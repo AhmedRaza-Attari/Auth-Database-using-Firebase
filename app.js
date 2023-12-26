@@ -76,7 +76,34 @@ const database = () => {
 
   // // set : for replace
   // frb.database().ref('fullName').set(obj);
-
   frb.database().ref('fullName').push(obj);
+}
+
+
+
+// GET DATA IN REAL TIME DATABASE
+const getRealTimeData = () => {
+
+  // // 1st
+  // 'once' : works when we refresh
+  // 'value' is default word
+
+  // frb.database().ref('fullName').once('value', (data) => {
+  //   // console.log(data);
+  //   console.log(data.val());
+  // })
+
+  
+  // // 2nd
+  // 'on' : works on realtime, with out refresh
+  // 'child_added' : is default word
+
+  frb.database().ref('fullName').on('child_added', (data) => {
+    console.log(data.val());
+  })
+
+  
 
 }
+
+getRealTimeData();
