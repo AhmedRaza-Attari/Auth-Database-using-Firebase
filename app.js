@@ -22,6 +22,8 @@ const frb = firebase.initializeApp(firebaseConfig);
 console.log(frb.database);
 
 
+
+// 1st
 // SIGNUP USER
 const signup = () => {
   let email = document.getElementById('signupEmail').value;
@@ -43,6 +45,8 @@ const signup = () => {
 }
 
 
+
+// 2nd
 // LOGIN USER
 const login = () => {
   let email = document.getElementById('loginEmail').value;
@@ -63,6 +67,7 @@ const login = () => {
 
 
 
+// 3rd
 // SAVE DATA IN REAL TIME DATABASE
 const database = () => {
 
@@ -81,7 +86,8 @@ const database = () => {
 
 
 
-// GET DATA IN REAL TIME DATABASE
+// 4th
+// GET DATA FROM REAL TIME DATABASE
 const getRealTimeData = () => {
 
   // // 1st
@@ -101,9 +107,27 @@ const getRealTimeData = () => {
   frb.database().ref('fullName').on('child_added', (data) => {
     console.log(data.val());
   })
-
-  
-
 }
 
 getRealTimeData();
+
+
+
+// 5th
+// DELETE DATA FROM REAL TIME DATABASE
+const deleteData = () => {
+  frb.database().ref('fullName/-NmaOUVtsiJQP32VaMma').remove();
+}
+deleteData();
+
+
+
+// 6th
+// DELETE DATA FROM REAL TIME DATABASE
+const editData = () => {
+  frb.database().ref('fullName/-NmaWQ_VaYgSEeJgQc2v').set({
+    fname: "edit_firstname",
+    lname: "edit_last tname"
+  });
+}
+editData();
