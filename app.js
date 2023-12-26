@@ -1,6 +1,16 @@
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCp5ciiNeHHH-qzO5TP4oNsYeWAAUUCob0",
+//   authDomain: "authentication-and-database-fb.firebaseapp.com",
+//   projectId: "authentication-and-database-fb",
+//   storageBucket: "authentication-and-database-fb.appspot.com",
+//   messagingSenderId: "84947591860",
+//   appId: "1:84947591860:web:885b99f8f1b18871082de1"
+// };
+
 const firebaseConfig = {
   apiKey: "AIzaSyCp5ciiNeHHH-qzO5TP4oNsYeWAAUUCob0",
   authDomain: "authentication-and-database-fb.firebaseapp.com",
+  databaseURL: "https://authentication-and-database-fb-default-rtdb.firebaseio.com",
   projectId: "authentication-and-database-fb",
   storageBucket: "authentication-and-database-fb.appspot.com",
   messagingSenderId: "84947591860",
@@ -9,7 +19,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const frb = firebase.initializeApp(firebaseConfig);
-console.log(frb.auth);
+console.log(frb.database);
 
 
 // SIGNUP USER
@@ -51,3 +61,22 @@ const login = () => {
     });
 }
 
+
+
+// SAVE DATA IN REAL TIME DATABASE
+const database = () => {
+
+  let fname = document.getElementById('fname').value;
+  let lname = document.getElementById('lname').value;
+
+  let obj = {
+    fname,
+    lname
+  }
+
+  // // set : for replace
+  // frb.database().ref('fullName').set(obj);
+
+  frb.database().ref('fullName').push(obj);
+
+}
